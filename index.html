@@ -98,23 +98,23 @@
 
   <div id="toast" class="toast hidden"></div>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDyI9mddUSvXwjmSq8SqvqiuNho0wv0io4",
-      authDomain: "orderingwebsite-3d6e0.firebaseapp.com",
-      projectId: "orderingwebsite-3d6e0",
-      storageBucket: "orderingwebsite-3d6e0.firebasestorage.app",
-      messagingSenderId: "290020527488",
-      appId: "1:290020527488:web:66c1e6de6bbfad3c594565",
-      measurementId: "G-THTJXZVR8T"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDyI9mddUSvXwjmSq8SqvqiuNho0wv0io4",
+    authDomain: "orderingwebsite-3d6e0.firebaseapp.com",
+    projectId: "orderingwebsite-3d6e0",
+    storageBucket: "orderingwebsite-3d6e0.firebasestorage.app",
+    messagingSenderId: "290020527488",
+    appId: "1:290020527488:web:66c1e6de6bbfad3c594565",
+    measurementId: "G-THTJXZVR8T"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore(); // <-- THIS creates `db`
+</script>
 
   <script src="app.js"></script>
 </body>
