@@ -1,7 +1,7 @@
 // Admin dashboard logic with Kanban drag & drop
 (function(){
   const LS_KEY = 'sop_orders_premium';
-  const ADMIN_PASS = 'admin123';
+  const ADMIN_PASS = 'BensServices!722';
   const board = document.getElementById('board');
   const cols = { pending: document.getElementById('col-pending'), inprogress: document.getElementById('col-inprogress'), complete: document.getElementById('col-complete') };
   const statsEl = document.getElementById('stats');
