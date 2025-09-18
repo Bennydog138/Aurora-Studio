@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Aurora Studio (Premium)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="canvas admin-canvas">
+    <header class="topbar">
+      <div class="brand"><span class="logo">A</span> Aurora Admin</div>
+      <nav class="navlinks">
+        <a href="index.html">Site</a>
+        <button id="logoutBtn" class="btn ghost">Logout</button>
+      </nav>
+    </header>
+
+    <main class="container admin-grid">
+      <aside class="panel sidepanel">
+        <h3>Overview</h3>
+        <div id="stats" class="stats"></div>
+        <div class="controls">
+          <button id="exportBtn" class="btn">Export CSV</button>
+          <div class="segmented">
+            <button data-filter="all" class="seg active">All</button>
+            <button data-filter="pending" class="seg">Pending</button>
+            <button data-filter="inprogress" class="seg">In Progress</button>
+            <button data-filter="complete" class="seg">Complete</button>
+          </div>
+        </div>
+        <div class="muted small" style="margin-top:14px">Drag cards between columns to change status. Admin password: <strong>admin123</strong></div>
+      </aside>
+
+      <section class="panel kanban">
+        <header class="flex-between">
+          <h2>Orders</h2>
+          <div class="muted">Drag & drop to update status</div>
+        </header>
+
+        <div class="board" id="board">
+          <div class="col" data-status="pending">
+            <h4>Pending</h4>
+            <div class="col-body" id="col-pending"></div>
+          </div>
+          <div class="col" data-status="inprogress">
+            <h4>In Progress</h4>
+            <div class="col-body" id="col-inprogress"></div>
+          </div>
+          <div class="col" data-status="complete">
+            <h4>Complete</h4>
+            <div class="col-body" id="col-complete"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

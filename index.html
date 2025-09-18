@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aurora Studio — Premium Orders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="canvas">
+    <header class="topbar">
+      <div class="brand"><span class="logo">A</span> Aurora Studio</div>
+      <nav class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#order" class="cta small">Order</a>
+        <a href="admin.html" class="ghost">Admin</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="hero-inner">
+        <h1>We build bots, servers & stunning graphics</h1>
+        <p class="lead">Premium quality, fast delivery. Tell us what you need — we'll make it real.</p>
+        <div class="hero-cta">
+          <a href="#order" class="cta">Place an order</a>
+          <a href="#services" class="ghost">Explore services</a>
+        </div>
+      </div>
+    </main>
+
+    <section id="services" class="container cards">
+      <article class="card">
+        <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><rect x="7" y="3" width="10" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/></svg></div>
+        <h3>Bot Creation</h3>
+        <p>Custom chatbots, automation workflows, AI assistants — tailored to your goals.</p>
+      </article>
+      <article class="card">
+        <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="6" rx="2" stroke="currentColor" stroke-width="1.2"/><rect x="3" y="13" width="18" height="6" rx="2" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <h3>Server Creation</h3>
+        <p>Set up secure, scalable servers with monitoring and deployment pipelines.</p>
+      </article>
+      <article class="card">
+        <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <h3>Graphic Creations</h3>
+        <p>Logos, banners, thumbnails and social content — crafted pixel-perfect.</p>
+      </article>
+    </section>
+
+    <section id="order" class="container panel form-panel">
+      <h2>Place an order</h2>
+      <form id="orderForm" class="form">
+        <div class="row">
+          <label class="field">
+            <span class="label">Your name</span>
+            <input name="name" required placeholder="Jane Doe" />
+          </label>
+          <label class="field">
+            <span class="label">Email</span>
+            <input name="email" type="email" required placeholder="you@example.com" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="field">
+            <span class="label">Service</span>
+            <select name="service">
+              <option>Bot Creation</option>
+              <option>Server Creation</option>
+              <option>Graphic Creations</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="label">Budget</span>
+            <input name="budget" placeholder="$50 - $500" />
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="label">Project details</span>
+          <textarea name="details" rows="6" required placeholder="Describe what you need..."></textarea>
+        </label>
+
+        <div class="row actions-row">
+          <button type="submit" class="btn primary">Submit order</button>
+          <button type="button" id="clearBtn" class="btn ghost">Clear</button>
+        </div>
+
+        <p class="muted small">This premium demo stores orders in your browser <strong>(localStorage)</strong>. For production, use a secure backend.</p>
+      </form>
+    </section>
+
+    <footer class="footer container">
+      <div>&copy; Aurora Studio — Premium</div>
+      <div class="muted small">Admin password: <strong>admin123</strong> — change before production</div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
