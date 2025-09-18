@@ -1,4 +1,3 @@
-// app.js — Firestore client integration
 const form = document.getElementById('orderForm');
 const toast = document.getElementById('toast');
 
