@@ -1,36 +1,48 @@
-// Premium client-side order logic (index.html)
-(function(){
-  const LS_KEY = 'sop_orders_premium';
-  const form = document.getElementById('orderForm');
-  const toast = document.getElementById('toast');
-  const clearBtn = document.getElementById('clearBtn');
+// app.js — Firestore client integration
+const form = document.getElementById('orderForm');
+const toast = document.getElementById('toast');
 
-  function showToast(msg){
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(()=> toast.classList.remove('show'), 3200);
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=> toast.classList.remove('show'), 3200);
+}
+
+// Submit order to Firestore
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const fd = new FormData(form);
+  const name = fd.get('name').trim();
+  const email = fd.get('email').trim();
+  const service = fd.get('service');
+  const budget = fd.get('budget').trim();
+  const details = fd.get('details').trim();
+
+  if(!name || !email || !details){
+    showToast('Please fill name, email, and details.');
+    return;
   }
 
-  function loadOrders(){ try{ return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); }catch(e){return [];} }
-  function saveOrders(arr){ localStorage.setItem(LS_KEY, JSON.stringify(arr)); }
+  const order = {
+    name,
+    email,
+    service,
+    budget,
+    details,
+    status: 'pending',
+    notes: '',
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
 
-  form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const fd = new FormData(form);
-    const name = fd.get('name').trim();
-    const email = fd.get('email').trim();
-    const service = fd.get('service');
-    const budget = fd.get('budget').trim();
-    const details = fd.get('details').trim();
-    if(!name || !email || !details){ showToast('Please fill name, email and details.'); return; }
-    const id = 'ORD-' + Date.now().toString(36);
-    const order = { id, name, email, service, budget, details, status: 'pending', notes:'', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
-    const arr = loadOrders();
-    arr.unshift(order);
-    saveOrders(arr);
+  try {
+    await db.collection('orders').add(order);
     form.reset();
-    showToast('Order placed — Admin will review it.');
-  });
+    showToast('Order placed successfully!');
+  } catch(err) {
+    console.error(err);
+    showToast('Error saving order.');
+  }
+});
 
-  clearBtn.addEventListener('click', ()=> form.reset());
-})();
+document.getElementById('clearBtn').addEventListener('click', ()=> form.reset());
