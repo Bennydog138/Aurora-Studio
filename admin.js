@@ -1,4 +1,3 @@
-// Admin dashboard logic with Kanban drag & drop using Firestore
 (async function(){
   const ADMIN_PASS = 'BensServices!722';
   const board = document.getElementById('board');
@@ -19,7 +18,6 @@
     setTimeout(()=> toast.classList.remove('show'), 2800);
   }
 
-  // simple auth guard
   function ensureAuth(){
     if(localStorage.getItem('sop_admin_auth') === '1') return true;
     const pw = prompt('Enter admin password:');
@@ -28,7 +26,6 @@
   }
   if(!ensureAuth()){ window.location.href='index.html'; }
 
-  // fetch all orders from Firestore
   async function fetchOrders(){
     const snapshot = await db.collection('orders').orderBy('createdAt','desc').get();
     return snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
@@ -62,16 +59,12 @@
         <button class="btn ghost small del">Del</button>
       </div>
     `;
-
-    // Delete order
     el.querySelector('.del').addEventListener('click', async ()=>{
       if(!confirm('Delete order '+o.id+'?')) return;
       await db.collection('orders').doc(o.id).delete();
       await refreshBoard();
       showToast('Order deleted');
     });
-
-    // Edit notes
     el.querySelector('.edit').addEventListener('click', async ()=>{
       const note = prompt('Edit admin note:', o.notes||'');
       if(note===null) return;
@@ -82,8 +75,6 @@
       await refreshBoard();
       showToast('Note saved');
     });
-
-    // Drag events
     el.addEventListener('dragstart',(e)=> e.dataTransfer.setData('text/plain', o.id));
     return el;
   }
@@ -98,7 +89,6 @@
     renderStats(orders);
   }
 
-  // refresh board from Firestore
   async function refreshBoard(){
     const orders = await fetchOrders();
     const activeFilter = document.querySelector('.seg.active')?.dataset.filter || 'all';
@@ -106,7 +96,6 @@
     else renderBoard(orders.filter(o=>o.status===activeFilter).concat(orders.filter(o=>o.status!==activeFilter)));
   }
 
-  // Drag & drop logic
   Object.entries(cols).forEach(([status, el])=>{
     el.addEventListener('dragover', e=> { e.preventDefault(); el.classList.add('over'); });
     el.addEventListener('dragleave', ()=> el.classList.remove('over'));
@@ -123,14 +112,12 @@
     });
   });
 
-  // segmented filter
   segs.forEach(s=> s.addEventListener('click', async ()=>{
     segs.forEach(x=> x.classList.remove('active'));
     s.classList.add('active');
     await refreshBoard();
   }));
 
-  // Export CSV
   exportBtn.addEventListener('click', async ()=>{
     const snapshot = await db.collection('orders').get();
     const rows = snapshot.docs.map(doc=> ({id: doc.id, ...doc.data()}));
@@ -143,14 +130,12 @@
     URL.revokeObjectURL(url);
   });
 
-  // Logout
   logoutBtn.addEventListener('click', ()=>{
     localStorage.removeItem('sop_admin_auth');
     showToast('Logged out');
     setTimeout(()=> location.href='index.html',800);
   });
 
-  // initial load
   await refreshBoard();
 
 })();
