@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aurora Studio — Premium Orders</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora Studio — Orders</title>
+  <link href="styles.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="canvas">
@@ -21,7 +21,7 @@
     <main class="hero">
       <div class="hero-inner">
         <h1>We build bots, servers & stunning graphics</h1>
-        <p class="lead">Premium quality, fast delivery. Tell us what you need — we'll make it real.</p>
+        <p class="lead">Premium quality, fast delivery. Place your order now!</p>
         <div class="hero-cta">
           <a href="#order" class="cta">Place an order</a>
           <a href="#services" class="ghost">Explore services</a>
@@ -31,17 +31,17 @@
 
     <section id="services" class="container cards">
       <article class="card">
-        <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><rect x="7" y="3" width="10" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/></svg></div>
+        <div class="icon">🤖</div>
         <h3>Bot Creation</h3>
         <p>Custom chatbots, automation workflows, AI assistants — tailored to your goals.</p>
       </article>
       <article class="card">
-        <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="6" rx="2" stroke="currentColor" stroke-width="1.2"/><rect x="3" y="13" width="18" height="6" rx="2" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="icon">🖥️</div>
         <h3>Server Creation</h3>
         <p>Set up secure, scalable servers with monitoring and deployment pipelines.</p>
       </article>
       <article class="card">
-        <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="icon">🎨</div>
         <h3>Graphic Creations</h3>
         <p>Logos, banners, thumbnails and social content — crafted pixel-perfect.</p>
       </article>
@@ -87,17 +87,34 @@
           <button type="button" id="clearBtn" class="btn ghost">Clear</button>
         </div>
 
-        <p class="muted small">This premium demo stores orders in your browser <strong>(localStorage)</strong>. For production, use a secure backend.</p>
+        <p class="muted small">Your order is stored globally in Firebase Firestore.</p>
       </form>
     </section>
 
     <footer class="footer container">
       <div>&copy; Aurora Studio — Premium</div>
-      <div class="muted small">Admin password: <strong>admin123</strong> — change before production</div>
     </footer>
   </div>
 
   <div id="toast" class="toast hidden"></div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDyI9mddUSvXwjmSq8SqvqiuNho0wv0io4",
+      authDomain: "orderingwebsite-3d6e0.firebaseapp.com",
+      projectId: "orderingwebsite-3d6e0",
+      storageBucket: "orderingwebsite-3d6e0.firebasestorage.app",
+      messagingSenderId: "290020527488",
+      appId: "1:290020527488:web:66c1e6de6bbfad3c594565",
+      measurementId: "G-THTJXZVR8T"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
 
   <script src="app.js"></script>
 </body>
